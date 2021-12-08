@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+
+class BoredAndJoke(models.Model):
+    type = models.CharField('type', max_length=50, null=False)
+    actividad = models.TextField('activity', null=False)
+    key = models.PositiveIntegerField(null=False)
+    chiste = models.TextField('joke', null=False)
+
