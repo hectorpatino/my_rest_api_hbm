@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'bored_and_joke.apps.BoredAndJokeConfig',
     'rest_framework',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -123,5 +124,12 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework_csv.renderers.CSVRenderer',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Bored and Joke API',
+    'DESCRIPTION': 'API for Bored and Joke',
+    'VERSION': '0.0.1',
+    # OTHER SETTINGS
 }

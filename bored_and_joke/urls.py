@@ -1,7 +1,10 @@
 from django.urls import path
 from .views import get_bored_and_joke, bored_csv
-
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 urlpatterns = [
-    path('boredandjoke/<str:tipo>', get_bored_and_joke, name='get_bored_and_joke'),
+    path('api/<str:tipo>', get_bored_and_joke, name='get_bored_and_joke'),
     path('all', bored_csv, name='bored_csv'),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     ]
