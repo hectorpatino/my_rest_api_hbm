@@ -1,8 +1,5 @@
 import requests
 import random
-import spacy
-
-from spacy.lang.en import English
 
 from rest_framework import status, serializers
 from rest_framework.decorators import api_view, renderer_classes
@@ -11,10 +8,7 @@ from rest_framework.response import Response
 from bored_and_joke.serializers import BoredAndJokeForGetSerializer, BoredAndJokeForCSVSerializer
 from bored_and_joke.models import BoredAndJoke
 from rest_framework_csv import renderers as r
-
-nlp = English()
-sp = spacy.load('en_core_web_sm')
-stopwords = sp.Defaults.stop_words
+from .stops_ import spacy_stop_words
 
 
 @api_view(['GET'])
@@ -32,7 +26,7 @@ def get_bored_and_joke(request, tipo):
                 'actividad': bored_api_data['activity'],
                 'key': bored_api_data['key']
             }
-            search_word = [word.lower() for word in bored_api_data['activity'].split() if word.lower() not in stopwords]
+            search_word = [word.lower() for word in bored_api_data['activity'].split() if word.lower() not in spacy_stop_words]
             if len(search_word) >= 2:
                 random_word = random.choice(search_word)
                 search_word.remove(random_word)

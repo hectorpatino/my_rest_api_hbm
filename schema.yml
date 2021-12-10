@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: Bored and Joke API
+  version: 0.0.1
+  description: API for Bored and Joke
+paths:
+  /all:
+    get:
+      operationId: all_retrieve
+      tags:
+      - all
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /boredandjoke/{tipo}:
+    get:
+      operationId: boredandjoke_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - csv
+          - json
+      - in: path
+        name: tipo
+        schema:
+          type: string
+        required: true
+      tags:
+      - boredandjoke
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
