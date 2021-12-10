@@ -9,7 +9,10 @@ from bored_and_joke.models import BoredAndJoke
 from rest_framework.views import APIView
 from rest_framework.settings import api_settings
 from rest_framework_csv import renderers as r
+import spacy
 
+sp = spacy.load('en_core_web_sm')
+all_stopwords = sp.Defaults.stop_words
 
 @api_view(['GET'])
 def get_bored_and_joke(request, tipo):
