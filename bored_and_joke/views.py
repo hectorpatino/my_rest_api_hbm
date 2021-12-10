@@ -1,18 +1,16 @@
+import requests
+import random
+import spacy
+
+from spacy.lang.en import English
+
 from rest_framework import status, serializers
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
-import requests
-from rest_pandas import PandasView
 
 from bored_and_joke.serializers import BoredAndJokeForGetSerializer, BoredAndJokeForCSVSerializer
 from bored_and_joke.models import BoredAndJoke
-from rest_framework.views import APIView
-from rest_framework.settings import api_settings
 from rest_framework_csv import renderers as r
-import spacy
-from spacy.tokenizer import Tokenizer
-from spacy.lang.en import English
-import random
 
 nlp = English()
 sp = spacy.load('en_core_web_sm')
