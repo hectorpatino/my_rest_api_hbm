@@ -1,0 +1,1 @@
+web: gunicorn humbolt.wsgi --log-file -
