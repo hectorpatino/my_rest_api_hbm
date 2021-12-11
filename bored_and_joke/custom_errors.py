@@ -1,0 +1,6 @@
+class IncorrectType(Exception):
+    ...
+
+
+class ThirdPartyAPIError(Exception):
+    ...

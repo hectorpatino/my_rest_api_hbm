@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_bored_and_joke, bored_csv, BoredAndJokeView
+from .views import bored_csv, BoredAndJokeView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 urlpatterns = [
     #path('api/<str:tipo>', get_bored_and_joke, name='get_bored_and_joke'),

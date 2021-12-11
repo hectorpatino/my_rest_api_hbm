@@ -5,16 +5,12 @@ from rest_framework import status, serializers
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from bored_and_joke.serializers import BoredAndJokeForGetSerializer, BoredAndJokeForCSVSerializer
+from bored_and_joke.serializers import BoredAndJokeForGetSerializer
 from bored_and_joke.models import BoredAndJoke
 from rest_framework_csv import renderers as r
+
+from .custom_errors import IncorrectType, ThirdPartyAPIError
 from .stops_ import spacy_stop_words
-
-class IncorrectType(Exception):
-    ...
-
-class ThirdPartyAPIError(Exception):
-    ...
 
 
 class BoredAndJokeView(APIView):
