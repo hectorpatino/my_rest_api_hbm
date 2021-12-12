@@ -5,7 +5,9 @@ from rest_framework import status, serializers
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from bored_and_joke.serializers import BoredAndJokeForGetSerializer
+from rest_pandas import PandasView
+
+from bored_and_joke.serializers import BoredAndJokeForGetSerializer, BoredAndJokeForCSVSerializer
 from bored_and_joke.models import BoredAndJoke
 from rest_framework_csv import renderers as r
 
@@ -61,7 +63,7 @@ class BoredAndJokeView(APIView):
         """Obtener los parámetros que serán utilizados en el serializador"""
         request_json = {
             'type': tipo,
-            'actividad': request_json['activity'],
+            'actividad': request_json['activity'].replace(',', ' '),
             'key': request_json['key']
         }
         return request_json
@@ -80,21 +82,12 @@ class BoredAndJokeView(APIView):
             joke = response['setup'] + '->' + response['delivery']
         else:
             joke = response['joke']
-        return joke
+        return joke.replace(',', ' ')
 
 
-@api_view(['GET'])
-@renderer_classes([r.CSVRenderer])
-def bored_csv(request):
-    bored_and_jokes = BoredAndJoke.objects.all()
-    content = [
-        {'type': bored_and_joke.type,
-         'actividad': f'"{bored_and_joke.actividad}"',
-         'key': bored_and_joke.key,
-         'chiste': f'"{bored_and_joke.chiste}"'}
-        for bored_and_joke in bored_and_jokes
-    ]
-    return Response(content)
+class PandasBoredJokeView(PandasView):
+    queryset = BoredAndJoke.objects.all()
+    serializer_class = BoredAndJokeForCSVSerializer
 
 
 
