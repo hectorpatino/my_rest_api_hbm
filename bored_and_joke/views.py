@@ -89,7 +89,7 @@ def bored_csv(request):
     bored_and_jokes = BoredAndJoke.objects.all()
     content = [
         {'type': bored_and_joke.type,
-         'actividad': f'{"bored_and_joke.actividad"}',
+         'actividad': f'"{bored_and_joke.actividad}"',
          'key': bored_and_joke.key,
          'chiste': f'"{bored_and_joke.chiste}"'}
         for bored_and_joke in bored_and_jokes
