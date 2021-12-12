@@ -74,7 +74,7 @@ class BoredAndJokeView(APIView):
                                                   api='joke',
                                                   message='Error en la API de Joke')
             if response['error'] is True:
-                raise serializers.ValidationError({"error": "No se encontró una chiste"})
+                return 'No se encontró un chiste.'
 
         if response['type'] == 'twopart':
             joke = response['setup'] + '->' + response['delivery']
