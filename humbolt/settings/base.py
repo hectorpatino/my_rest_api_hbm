@@ -130,7 +130,7 @@ REST_FRAMEWORK = {
 }
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Bored and Joke API',
-    'DESCRIPTION': 'API for Bored and Joke',
+    'DESCRIPTION': 'API de Bored y Joke APIs',
     'VERSION': '0.0.1',
-    # OTHER SETTINGS
+    'CONTACT': {'name': 'Cristian Socha', 'email': 'ccsocha01@gmail.com'}
 }
